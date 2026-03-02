@@ -24,11 +24,11 @@ stow -R nvim
 
 ## Architecture
 
-**13 stow packages**, each self-contained with its XDG-compliant path structure:
+**7 stow packages**, each self-contained with its XDG-compliant path structure:
 
-- **Hyprland desktop**: `hypr` (window manager, split into per-concern `.conf` files), `waybar` (panel), `walker` (launcher)
+- **Hyprland**: `hypr` — monitors config only (rest lives unmanaged in `~/.config/hypr/`)
 - **Editor**: `nvim` — LazyVim-based Neovim setup; plugins in `nvim/.config/nvim/lua/plugins/`, config in `lua/config/`
-- **CLI tools**: `tmux`, `starship`, `mise`, `btop`, `fastfetch`
+- **CLI tools**: `tmux`, `starship`
 - **Git**: global config with SSH signing via 1Password, rebase-on-pull, rerere enabled
 - **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs, and 11 skills (9 SDD + go-testing + skill-creator) plus shared conventions
 - **GGA**: `gga/.config/gga/` — Gentleman Guardian Angel AI code review config and AGENTS.md rules
@@ -36,6 +36,6 @@ stow -R nvim
 ## Key Conventions
 
 - Every config file lives under its package's `.config/` subtree (XDG base directory spec)
-- Hyprland config is split by concern: `bindings.conf`, `monitors.conf`, `looknfeel.conf`, `input.conf`, etc. — not a single monolithic file
+- Hyprland monitors config is the only hypr file managed by stow; rest lives directly in `~/.config/hypr/`
 - Git commits are GPG-signed with SSH keys (`gpg.format = ssh`)
 - Neovim uses LazyVim; add plugins by creating new files in `lua/plugins/`

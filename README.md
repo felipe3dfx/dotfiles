@@ -9,15 +9,10 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 | nvim | Neovim (LazyVim) |
 | tmux | Terminal multiplexer |
 | git | Git config + global ignore |
-| mise | Runtime version manager |
 | starship | Shell prompt |
 | claude | Claude Code settings, skills, persona, output-styles, MCP configs |
 | gga | Gentleman Guardian Angel (AI code review) config + rules |
-| hypr | Hyprland window manager (user overrides) |
-| waybar | Waybar panel |
-| walker | Walker launcher |
-| btop | System monitor |
-| fastfetch | System info fetch |
+| hypr | Hyprland monitors config only |
 
 ## Usage
 
