@@ -1,6 +1,3 @@
-# Backups de ghostty
-*.bak
-
 # Claude - versionar settings + skills + statusline + CLAUDE.md + output-styles + mcp
 claude/.claude/*
 !claude/.claude/settings.json

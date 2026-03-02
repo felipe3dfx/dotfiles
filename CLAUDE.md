@@ -24,9 +24,8 @@ stow -R nvim
 
 ## Architecture
 
-**16 stow packages**, each self-contained with its XDG-compliant path structure:
+**13 stow packages**, each self-contained with its XDG-compliant path structure:
 
-- **Terminals**: `alacritty`, `kitty`, `ghostty` — independent terminal emulator configs
 - **Hyprland desktop**: `hypr` (window manager, split into per-concern `.conf` files), `waybar` (panel), `walker` (launcher)
 - **Editor**: `nvim` — LazyVim-based Neovim setup; plugins in `nvim/.config/nvim/lua/plugins/`, config in `lua/config/`
 - **CLI tools**: `tmux`, `starship`, `mise`, `btop`, `fastfetch`

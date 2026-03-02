@@ -6,9 +6,6 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 
 | Package | Config |
 |---------|--------|
-| alacritty | Terminal emulator |
-| kitty | Terminal emulator |
-| ghostty | Terminal emulator |
 | nvim | Neovim (LazyVim) |
 | tmux | Terminal multiplexer |
 | git | Git config + global ignore |
