@@ -1,1 +1,0 @@
-/home/felipe3dfx/.config/omarchy/current/theme/neovim.lua

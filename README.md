@@ -6,8 +6,6 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 
 | Package | Config |
 |---------|--------|
-| nvim | Neovim (LazyVim) |
-| tmux | Terminal multiplexer |
 | git | Git config + global ignore |
 | starship | Shell prompt |
 | claude | Claude Code settings, skills, persona, output-styles, MCP configs |
@@ -25,5 +23,5 @@ cd ~/dotfiles
 stow */
 
 # Stow a single package
-stow nvim
+stow git
 ```

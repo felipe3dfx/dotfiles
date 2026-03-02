@@ -13,7 +13,7 @@ Personal dotfiles for Arch Linux (Omarchy) managed with [GNU Stow](https://www.g
 stow */
 
 # Stow a single package
-stow nvim
+stow git
 
 # Unstow (remove symlinks)
 stow -D nvim
@@ -24,11 +24,10 @@ stow -R nvim
 
 ## Architecture
 
-**7 stow packages**, each self-contained with its XDG-compliant path structure:
+**5 stow packages**, each self-contained with its XDG-compliant path structure:
 
 - **Hyprland**: `hypr` — monitors config only (rest lives unmanaged in `~/.config/hypr/`)
-- **Editor**: `nvim` — LazyVim-based Neovim setup; plugins in `nvim/.config/nvim/lua/plugins/`, config in `lua/config/`
-- **CLI tools**: `tmux`, `starship`
+- **CLI tools**: `starship`
 - **Git**: global config with SSH signing via 1Password, rebase-on-pull, rerere enabled
 - **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs, and 11 skills (9 SDD + go-testing + skill-creator) plus shared conventions
 - **GGA**: `gga/.config/gga/` — Gentleman Guardian Angel AI code review config and AGENTS.md rules
@@ -38,4 +37,3 @@ stow -R nvim
 - Every config file lives under its package's `.config/` subtree (XDG base directory spec)
 - Hyprland monitors config is the only hypr file managed by stow; rest lives directly in `~/.config/hypr/`
 - Git commits are GPG-signed with SSH keys (`gpg.format = ssh`)
-- Neovim uses LazyVim; add plugins by creating new files in `lua/plugins/`
