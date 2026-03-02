@@ -1,0 +1,6 @@
+# Backups de ghostty
+*.bak
+
+# Claude - solo settings.json se versiona
+claude/.claude/*
+!claude/.claude/settings.json
