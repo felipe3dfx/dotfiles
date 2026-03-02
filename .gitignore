@@ -1,6 +1,9 @@
 # Backups de ghostty
 *.bak
 
-# Claude - solo settings.json se versiona
+# Claude - versionar settings + skills + statusline
 claude/.claude/*
 !claude/.claude/settings.json
+!claude/.claude/settings.local.json
+!claude/.claude/statusline-command.sh
+!claude/.claude/skills/
