@@ -16,7 +16,8 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 | git | Git config + global ignore |
 | mise | Runtime version manager |
 | starship | Shell prompt |
-| claude | Claude Code settings + skills + statusline |
+| claude | Claude Code settings, skills, persona, output-styles, MCP configs |
+| gga | Gentleman Guardian Angel (AI code review) config + rules |
 | hypr | Hyprland window manager (user overrides) |
 | waybar | Waybar panel |
 | walker | Walker launcher |
