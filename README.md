@@ -12,6 +12,17 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 | gga | Gentleman Guardian Angel (AI code review) config + rules |
 | hypr | Hyprland monitors config only |
 
+## Why the dot-directories inside each package?
+
+Stow creates symlinks in the **parent directory** relative to where you run it. Since we run `stow <package>` from `~/dotfiles/`, everything inside the package folder gets symlinked into `~/`.
+
+```
+~/dotfiles/claude/.claude/settings.json  →  ~/.claude/settings.json
+~/dotfiles/gga/.config/gga/config        →  ~/.config/gga/config
+```
+
+The dot-prefixed subdirectory (`.claude/`, `.config/`) mirrors the real path in your home directory — stow needs that structure to know WHERE to place the symlink.
+
 ## Usage
 
 ```bash
