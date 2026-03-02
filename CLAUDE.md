@@ -24,12 +24,12 @@ stow -R nvim
 
 ## Architecture
 
-**18 stow packages**, each self-contained with its XDG-compliant path structure:
+**16 stow packages**, each self-contained with its XDG-compliant path structure:
 
 - **Terminals**: `alacritty`, `kitty`, `ghostty` — independent terminal emulator configs
 - **Hyprland desktop**: `hypr` (window manager, split into per-concern `.conf` files), `waybar` (panel), `walker` (launcher)
 - **Editor**: `nvim` — LazyVim-based Neovim setup; plugins in `nvim/.config/nvim/lua/plugins/`, config in `lua/config/`
-- **CLI tools**: `tmux`, `lazygit`, `lazydocker`, `starship`, `mise`, `btop`, `fastfetch`
+- **CLI tools**: `tmux`, `starship`, `mise`, `btop`, `fastfetch`
 - **Git**: global config with SSH signing via 1Password, rebase-on-pull, rerere enabled
 - **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs, and 11 skills (9 SDD + go-testing + skill-creator) plus shared conventions
 - **GGA**: `gga/.config/gga/` — Gentleman Guardian Angel AI code review config and AGENTS.md rules

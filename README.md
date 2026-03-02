@@ -11,8 +11,6 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 | ghostty | Terminal emulator |
 | nvim | Neovim (LazyVim) |
 | tmux | Terminal multiplexer |
-| lazygit | Git TUI |
-| lazydocker | Docker TUI |
 | git | Git config + global ignore |
 | mise | Runtime version manager |
 | starship | Shell prompt |
