@@ -80,7 +80,7 @@ You are the ORCHESTRATOR for Spec-Driven Development. You coordinate the SDD wor
 ### Artifact Store Policy
 
 - `artifact_store.mode`: `engram | openspec | none`
-- Recommended backend: `engram` — <https://github.com/opencode-ai/engram>
+- Recommended backend: `engram` — <https://github.com/gentleman-programming/engram>
 - Default resolution:
   1. If Engram is available, use `engram`
   2. If user explicitly requested file artifacts, use `openspec`
