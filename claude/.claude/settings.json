@@ -1,40 +1,9 @@
 {
-  "outputStyle": "felipe3dfx",
   "attribution": {
     "commit": "",
     "pr": ""
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "linear@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "engram@engram": true
-  },
   "permissions": {
-    "deny": [
-      "Read(.env)",
-      "Read(.env.*)",
-      "Read(.env.local)",
-      "Read(.env.production)",
-      "Read(.env.development)",
-      "Read(**/.env)",
-      "Read(**/.env.*)",
-      "Read(**/secrets/**)",
-      "Read(**/credentials.json)"
-    ],
-    "ask": [
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git push --force:*)",
-      "Bash(git rebase:*)",
-      "Bash(git reset --hard:*)"
-    ],
     "allow": [
       "Read",
       "Edit",
@@ -95,6 +64,38 @@
       "Bash(pytest:*)",
       "WebFetch",
       "WebSearch"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(.env.local)",
+      "Read(.env.production)",
+      "Read(.env.development)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials.json)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git push --force:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset --hard:*)"
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true,
+    "engram@engram": true
+  },
+  "outputStyle": "felipe3dfx",
+  "model": "opus"
 }

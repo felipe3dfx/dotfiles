@@ -11,6 +11,7 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 | claude | Claude Code settings, skills, persona, output-styles, MCP configs |
 | gga | Gentleman Guardian Angel (AI code review) config + rules |
 | hypr | Hyprland monitors config only |
+| opencode | OpenCode (Cursor) config: SDD skills, commands, plugins, AGENTS.md |
 
 ## Why the dot-directories inside each package?
 
@@ -22,6 +23,11 @@ Stow creates symlinks in the **parent directory** relative to where you run it. 
 ```
 
 The dot-prefixed subdirectory (`.claude/`, `.config/`) mirrors the real path in your home directory — stow needs that structure to know WHERE to place the symlink.
+
+## Credits
+
+- [gentleman-programming/gentle-ai](https://github.com/gentleman-programming/gentle-ai) —
+  SDD workflow, skills framework, and base configurations
 
 ## Usage
 

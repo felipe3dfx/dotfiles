@@ -24,13 +24,14 @@ stow -R nvim
 
 ## Architecture
 
-**5 stow packages**, each self-contained with its XDG-compliant path structure:
+**6 stow packages**, each self-contained with its XDG-compliant path structure:
 
 - **Hyprland**: `hypr` — monitors config only (rest lives unmanaged in `~/.config/hypr/`)
 - **CLI tools**: `starship`
 - **Git**: global config with SSH signing via 1Password, rebase-on-pull, rerere enabled
 - **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs, and 11 skills (9 SDD + go-testing + skill-creator) plus shared conventions
 - **GGA**: `gga/.config/gga/` — Gentleman Guardian Angel AI code review config and AGENTS.md rules
+- **OpenCode**: `opencode/.config/opencode/` — OpenCode (Cursor) config: SDD skills, commands, plugins, AGENTS.md
 
 ## Key Conventions
 
