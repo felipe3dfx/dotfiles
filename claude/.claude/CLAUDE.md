@@ -47,9 +47,18 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 
 ### Framework/Library Detection
 
-| Context                         | Read this file                            |
-| ------------------------------- | ----------------------------------------- |
-| Creating new AI skills          | `~/.claude/skills/skill-creator/SKILL.md` |
+| Context                                  | Read this file                                  |
+| ---------------------------------------- | ----------------------------------------------- |
+| Django Ninja API, routers, schemas       | `~/.claude/skills/django-ninja/SKILL.md`        |
+| HTMX attributes, partials, Django HTMX   | `~/.claude/skills/htmx/SKILL.md`                |
+| Alpine.js directives, x-data, x-show     | `~/.claude/skills/alpinejs/SKILL.md`            |
+| django-components, template components   | `~/.claude/skills/django-components/SKILL.md`   |
+| Huey async tasks, @db_task, periodic     | `~/.claude/skills/huey/SKILL.md`                |
+| Tailwind classes, styling                | `~/.claude/skills/tailwind-4/SKILL.md`          |
+| Playwright tests, e2e                    | `~/.claude/skills/playwright/SKILL.md`          |
+| Pytest, Python testing                   | `~/.claude/skills/pytest/SKILL.md`              |
+| GitHub PR/Issue review                   | `~/.claude/skills/pr-review/SKILL.md`           |
+| Creating new AI skills                   | `~/.claude/skills/skill-creator/SKILL.md`       |
 
 ### How to use skills
 

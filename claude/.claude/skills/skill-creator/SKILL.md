@@ -5,7 +5,6 @@ description: >
   Trigger: When user asks to create a new skill, add agent instructions, or document patterns for AI.
 license: Apache-2.0
 metadata:
-  author: felipe3dfx
   version: "1.0"
 allowed-tools: Read, Edit, Write, Glob, Grep, Bash, WebFetch, WebSearch, Task
 ---
@@ -49,7 +48,6 @@ description: >
   Trigger: {When the AI should load this skill}.
 license: Apache-2.0
 metadata:
-  author: felipe3dfx
   version: "1.0"
 ---
 
@@ -84,9 +82,9 @@ metadata:
 | Type | Pattern | Examples |
 |------|---------|----------|
 | Generic skill | `{technology}` | `pytest`, `playwright`, `typescript` |
-| Project-specific | `{project}-{component}` | `myapp-api`, `myapp-ui` |
+| Project-specific | `{project}-{component}` | `myapp-api`, `myapp-ui`, `myapp-sdk` |
 | Testing skill | `{project}-test-{component}` | `myapp-test-sdk`, `myapp-test-api` |
-| Workflow skill | `{action}-{target}` | `skill-creator`, `jira-task` |
+| Workflow skill | `{action}-{target}` | `skill-creator`, `pr-review` |
 
 ---
 
@@ -100,7 +98,17 @@ Link to existing docs?      → references/
 Link to external guides?    → references/ (with local path)
 ```
 
-**Key Rule**: `references/` should point to LOCAL files, not web URLs.
+**Key Rule**: `references/` should point to LOCAL files (`docs/developer-guide/*.mdx`), not web URLs.
+
+---
+
+## Decision: Project-Specific vs Generic
+
+```
+Patterns apply to ANY project?     → Generic skill (e.g., pytest, typescript)
+Patterns are project-specific?     → {project}-{name} skill
+Generic skill needs project info?  → Add references/ pointing to project docs
+```
 
 ---
 
@@ -110,8 +118,7 @@ Link to external guides?    → references/ (with local path)
 |-------|----------|-------------|
 | `name` | Yes | Skill identifier (lowercase, hyphens) |
 | `description` | Yes | What + Trigger in one block |
-| `license` | Yes | Always `Apache-2.0` |
-| `metadata.author` | Yes | `felipe3dfx` |
+| `license` | Yes | `Apache-2.0` (or project license) |
 | `metadata.version` | Yes | Semantic version as string |
 
 ---

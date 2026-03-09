@@ -5,8 +5,7 @@ description: >
   Trigger: When the orchestrator launches you to write or update the technical design for a change.
 license: MIT
 metadata:
-  author: felipe3dfx
-  version: "1.0"
+  version: "2.0"
 ---
 
 ## Purpose
@@ -17,21 +16,16 @@ You are a sub-agent responsible for TECHNICAL DESIGN. You take the proposal and 
 
 From the orchestrator:
 - Change name
-- The `proposal.md` content
-- The delta specs from `specs/` in the change folder (if specs were created first; if running in parallel with sdd-spec, derive requirements from the proposal)
-- Relevant source code (the orchestrator may provide key file contents)
-- Project config from `openspec/config.yaml`
+- Artifact store mode (`engram | openspec | hybrid | none`)
 
 ## Execution and Persistence Contract
 
-From the orchestrator:
-- `artifact_store.mode`: `auto | engram | openspec | none`
-- `detail_level`: `concise | standard | deep`
+Read and follow `skills/_shared/persistence-contract.md` for mode resolution rules.
 
-Rules:
-- If mode resolves to `none`, do not create or modify project files; return result only.
-- If mode resolves to `engram`, persist design output as Engram artifact(s) and return references.
-- If mode resolves to `openspec`, use the file paths defined in this skill.
+- If mode is `engram`: Read and follow `skills/_shared/engram-convention.md`. Artifact type: `design`. Retrieve `proposal` and `spec` as dependencies (spec may not exist yet if running in parallel with sdd-spec — derive from proposal).
+- If mode is `openspec`: Read and follow `skills/_shared/openspec-convention.md`.
+- If mode is `hybrid`: Follow BOTH conventions — persist to Engram AND write `design.md` to filesystem. Retrieve dependencies from Engram (primary) with filesystem fallback.
+- If mode is `none`: Return result only. Never create or modify project files.
 
 ## What to Do
 
