@@ -1,9 +1,12 @@
-# Claude - versionar settings + skills + statusline + CLAUDE.md + output-styles + mcp
+# Claude - version settings + statusline + CLAUDE.md + output-styles + mcp
 claude/.claude/*
 !claude/.claude/settings.json
 !claude/.claude/settings.local.json
 !claude/.claude/statusline-command.sh
-!claude/.claude/skills/
 !claude/.claude/CLAUDE.md
 !claude/.claude/output-styles/
 !claude/.claude/mcp/
+
+# Skills are copied by sync-skills.sh — only skills/ (top-level) is versioned
+claude/.claude/skills/
+opencode/.config/opencode/skills/

@@ -8,10 +8,21 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 |---------|--------|
 | git | Git config + global ignore |
 | starship | Shell prompt |
-| claude | Claude Code settings, skills, persona, output-styles, MCP configs |
+| claude | Claude Code settings, persona, output-styles, MCP configs |
 | gga | Gentleman Guardian Angel (AI code review) config + rules |
 | hypr | Hyprland monitors config only |
-| opencode | OpenCode (Cursor) config: SDD skills, commands, plugins, AGENTS.md |
+| opencode | OpenCode config: commands, plugins, AGENTS.md |
+
+## Shared Skills
+
+The `skills/` directory contains 20 AI agent skills shared between Claude Code and OpenCode. It is **not** a stow package — it's a canonical source synced to both tools via `sync-skills.sh`.
+
+```bash
+# After editing any skill in skills/, run:
+./sync-skills.sh
+```
+
+This copies `skills/` into `claude/.claude/skills/` and `opencode/.config/opencode/skills/` (both gitignored), then the next `stow` deploys them.
 
 ## Why the dot-directories inside each package?
 
@@ -37,6 +48,7 @@ git clone git@github.com:felipe3dfx/dotfiles.git ~/dotfiles
 
 # Stow all packages
 cd ~/dotfiles
+./sync-skills.sh
 stow */
 
 # Stow a single package

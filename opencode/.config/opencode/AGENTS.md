@@ -49,10 +49,20 @@ Frontend (Angular, React), state management (Redux, Signals, GPX-Store), Clean/H
 
 IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the corresponding skill file BEFORE writing code.
 
-| Context | Read this file |
-|---------|----------------|
-| Creating new AI skills | `~/.config/opencode/skills/skill-creator/SKILL.md` |
-| SDD workflow | `~/.config/opencode/AGENTS.md` |
+| Context                                  | Read this file                                          |
+| ---------------------------------------- | ------------------------------------------------------- |
+| Django Ninja API, routers, schemas       | `~/.config/opencode/skills/django-ninja/SKILL.md`       |
+| HTMX attributes, partials, Django HTMX   | `~/.config/opencode/skills/htmx/SKILL.md`               |
+| Alpine.js directives, x-data, x-show     | `~/.config/opencode/skills/alpinejs/SKILL.md`           |
+| django-components, template components   | `~/.config/opencode/skills/django-components/SKILL.md`  |
+| Huey async tasks, @db_task, periodic     | `~/.config/opencode/skills/huey/SKILL.md`               |
+| Tailwind classes, styling                | `~/.config/opencode/skills/tailwind-4/SKILL.md`         |
+| Playwright tests, e2e                    | `~/.config/opencode/skills/playwright/SKILL.md`         |
+| Pytest, Python testing                   | `~/.config/opencode/skills/pytest/SKILL.md`             |
+| Django testing, pytest-django, factories | `~/.config/opencode/skills/django-pytest/SKILL.md`      |
+| GitHub PR/Issue review                   | `~/.config/opencode/skills/pr-review/SKILL.md`          |
+| Creating new AI skills                   | `~/.config/opencode/skills/skill-creator/SKILL.md`      |
+| SDD workflow                             | `~/.config/opencode/AGENTS.md`                          |
 
 <!-- /gentle-ai:persona -->
 

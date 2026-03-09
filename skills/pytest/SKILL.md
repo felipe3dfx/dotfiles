@@ -89,10 +89,39 @@ def test_customer_detail_view():
 
 Always use the `mocker` fixture from pytest-mock. Never import `unittest.mock.patch` or `MagicMock` directly.
 
+> **Precedence note:** Project-specific testing skills (like `django-pytest`) may override
+> these generic mocking patterns. When both this skill and a project-specific skill apply,
+> the project-specific one takes precedence.
+
+**Preferred: mock at the HTTP/network layer** (works for integration and view tests):
+
 ```python
-# CORRECT
+# PREFERRED — mock at the HTTP boundary
 @pytest.mark.django_db
-def test_process_payment(mocker, django_client, authenticated_agency_user):
+def test_process_payment(django_client, authenticated_agency_user, responses):
+    agency, _ = authenticated_agency_user()
+    responses.add(
+        responses.POST,
+        'https://api.payment-provider.com/charge',
+        json={'status': 'success'},
+        status=200,
+    )
+
+    response = django_client.post(
+        reverse('app_name:process', kwargs={'agency_slug': agency.name_slug}),
+        {'amount': 100},
+        follow=True,
+    )
+
+    assert response.status_code == 200
+```
+
+**Fallback: patch internal functions** (only for isolated unit tests where HTTP mocking is not applicable):
+
+```python
+# FALLBACK — internal patching for unit tests only
+@pytest.mark.django_db
+def test_process_payment_unit(mocker, django_client, authenticated_agency_user):
     agency, _ = authenticated_agency_user()
     mock_service = mocker.patch('apps.core.services.external_service')
     mock_service.return_value = {'status': 'success'}
@@ -105,8 +134,9 @@ def test_process_payment(mocker, django_client, authenticated_agency_user):
 
     assert response.status_code == 200
     mock_service.assert_called_once()
+```
 
-
+```python
 # WRONG — never import from unittest.mock
 from unittest.mock import patch, MagicMock
 
@@ -200,7 +230,8 @@ What to test?
 └── Reusable test data?         → Factory in factories.py + register in conftest.py
 
 How to mock?
-├── External service/API?       → mocker.patch('apps.module.services.external_call')
+├── External service/API?       → HTTP-layer mock (responses/httpx_mock) preferred
+│                                  mocker.patch() only as fallback for unit tests
 ├── Django settings?            → settings fixture (autouse if needed)
 ├── S3/file storage?            → mocker.patch on the storage client
 └── Complex object?             → mocker.MagicMock() with attributes
@@ -352,14 +383,37 @@ def test_calculate_commission(premium, commission_rate, expected):
     assert result == expected
 ```
 
-### Mocking with mocker
+### Mocking External Services
+
+Prefer HTTP-layer mocking (`responses`, `httpx_mock`) for integration/view tests.
+Fall back to `mocker.patch()` only for isolated unit tests.
 
 ```python
+# PREFERRED — HTTP-layer mock
 @pytest.mark.django_db
-def test_external_api_call(mocker, django_client, authenticated_agency_user):
+def test_external_api_call(django_client, authenticated_agency_user, responses):
     agency, _ = authenticated_agency_user()
 
-    # Patch at the import location
+    responses.add(
+        responses.GET,
+        'https://api.external-service.com/data',
+        json={'id': 'abc-123', 'status': 'active'},
+        status=200,
+    )
+
+    response = django_client.get(
+        reverse('app_name:sync', kwargs={'agency_slug': agency.name_slug}),
+        follow=True,
+    )
+
+    assert response.status_code == 200
+
+
+# FALLBACK — internal patch for unit tests only
+@pytest.mark.django_db
+def test_external_api_call_unit(mocker, django_client, authenticated_agency_user):
+    agency, _ = authenticated_agency_user()
+
     mock_api = mocker.patch('apps.core.services.external_api.fetch_data')
     mock_api.return_value = {'id': 'abc-123', 'status': 'active'}
 

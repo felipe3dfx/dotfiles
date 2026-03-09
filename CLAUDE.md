@@ -20,6 +20,9 @@ stow -D nvim
 
 # Restow (useful after moving files around)
 stow -R nvim
+
+# Sync skills to claude and opencode packages, then restow
+./sync-skills.sh
 ```
 
 ## Architecture
@@ -29,12 +32,17 @@ stow -R nvim
 - **Hyprland**: `hypr` — monitors config only (rest lives unmanaged in `~/.config/hypr/`)
 - **CLI tools**: `starship`
 - **Git**: global config with SSH signing via 1Password, rebase-on-pull, rerere enabled
-- **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs, and 20 skills (9 SDD v2.0, 8 framework/tool skills, skill-creator, _shared conventions, skill-creator assets)
+- **Claude Code**: `claude/.claude/` — settings, statusline script, CLAUDE.md (persona + SDD orchestrator + engram protocol), output-styles, MCP configs
 - **GGA**: `gga/.config/gga/` — Gentleman Guardian Angel AI code review config and AGENTS.md rules
-- **OpenCode**: `opencode/.config/opencode/` — OpenCode (Cursor) config: SDD skills, commands, plugins, AGENTS.md
+- **OpenCode**: `opencode/.config/opencode/` — OpenCode config: commands, plugins, AGENTS.md
+
+**Shared directory** (not a stow package):
+
+- **`skills/`** — 21 AI agent skills (9 SDD v2.0, 10 framework/tool skills, skill-creator, _shared conventions). Canonical source, synced to `claude/.claude/skills/` and `opencode/.config/opencode/skills/` via `sync-skills.sh`. The copies are gitignored.
 
 ## Key Conventions
 
 - Every config file lives under its package's `.config/` subtree (XDG base directory spec)
 - Hyprland monitors config is the only hypr file managed by stow; rest lives directly in `~/.config/hypr/`
 - Git commits are GPG-signed with SSH keys (`gpg.format = ssh`)
+- Skills are maintained in `skills/` (top-level) and copied to stow packages by `sync-skills.sh` — never edit skills inside `claude/` or `opencode/` directly

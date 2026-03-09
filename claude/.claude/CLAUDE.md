@@ -57,6 +57,7 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | Tailwind classes, styling                | `~/.claude/skills/tailwind-4/SKILL.md`          |
 | Playwright tests, e2e                    | `~/.claude/skills/playwright/SKILL.md`          |
 | Pytest, Python testing                   | `~/.claude/skills/pytest/SKILL.md`              |
+| Django testing, pytest-django, factories | `~/.claude/skills/django-pytest/SKILL.md`       |
 | GitHub PR/Issue review                   | `~/.claude/skills/pr-review/SKILL.md`           |
 | Creating new AI skills                   | `~/.claude/skills/skill-creator/SKILL.md`       |
 
