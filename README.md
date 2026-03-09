@@ -15,7 +15,7 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/) on
 
 ## Shared Skills
 
-The `skills/` directory contains 20 AI agent skills shared between Claude Code and OpenCode. It is **not** a stow package — it's a canonical source synced to both tools via `sync-skills.sh`.
+The `skills/` directory contains 21 AI agent skills shared between Claude Code and OpenCode. It is **not** a stow package — it's a canonical source synced to both tools via `sync-skills.sh`.
 
 ```bash
 # After editing any skill in skills/, run:

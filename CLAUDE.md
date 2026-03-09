@@ -16,10 +16,10 @@ stow */
 stow git
 
 # Unstow (remove symlinks)
-stow -D nvim
+stow -D claude
 
 # Restow (useful after moving files around)
-stow -R nvim
+stow -R claude
 
 # Sync skills to claude and opencode packages, then restow
 ./sync-skills.sh
