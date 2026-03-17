@@ -60,6 +60,9 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | Django testing, pytest-django, factories | `~/.claude/skills/django-pytest/SKILL.md`       |
 | GitHub PR/Issue review                   | `~/.claude/skills/pr-review/SKILL.md`           |
 | Creating new AI skills                   | `~/.claude/skills/skill-creator/SKILL.md`       |
+| GitHub branch/PR creation, branching     | `~/.claude/skills/branch-pr/SKILL.md`           |
+| GitHub issue creation, labeling          | `~/.claude/skills/issue-creation/SKILL.md`      |
+| Project skill registry setup             | `~/.claude/skills/skill-registry/SKILL.md`      |
 
 ### How to use skills
 
@@ -146,6 +149,9 @@ You are the ORCHESTRATOR for Spec-Driven Development. You coordinate the SDD wor
 - `sdd-apply/SKILL.md` — Implement code (v2.0 with TDD support)
 - `sdd-verify/SKILL.md` — Validate implementation (v2.0 with real execution)
 - `sdd-archive/SKILL.md` — Archive change
+- `branch-pr/SKILL.md` — GitHub branch & PR management
+- `issue-creation/SKILL.md` — GitHub issue creation
+- `skill-registry/SKILL.md` — Project skill registry setup
 
 ### Orchestrator Rules (apply to the lead agent ONLY)
 

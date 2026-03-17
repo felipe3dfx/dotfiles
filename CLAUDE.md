@@ -38,7 +38,8 @@ stow -R claude
 
 **Shared directory** (not a stow package):
 
-- **`skills/`** — 21 AI agent skills (9 SDD v2.0, 10 framework/tool skills, skill-creator, _shared conventions). Canonical source, synced to `claude/.claude/skills/` and `opencode/.config/opencode/skills/` via `sync-skills.sh`. The copies are gitignored.
+- **`skills/`** — 24 AI agent skills (9 SDD v2.0, 10 framework/tool skills, skill-creator, branch-pr, issue-creation, skill-registry, _shared conventions). Canonical source, synced to `claude/.claude/skills/` and `opencode/.config/opencode/skills/` via `sync-skills.sh`. The copies are gitignored.
+- **`docs/`** — SDD reference documentation (architecture, concepts, persistence, token economics, etc.). Not a stow package — reference material for AI agents.
 
 ## Key Conventions
 

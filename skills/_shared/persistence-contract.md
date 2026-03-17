@@ -53,6 +53,88 @@ The orchestrator persists DAG state after each phase transition. This enables SD
 - NEVER force `openspec/` creation unless the orchestrator explicitly passed `openspec` or `hybrid` mode.
 - If you are unsure which mode to use, default to `none`.
 
+## Sub-Agent Context Rules
+
+Sub-agents launch with a fresh context and NO access to the orchestrator's instructions or memory protocol. The orchestrator controls what context they receive and sub-agents are responsible for persisting what they produce.
+
+### Who reads, who writes
+
+| Context | Who reads from backend | Who writes to backend |
+|---------|----------------------|----------------------|
+| Non-SDD (general task) | **Orchestrator** searches engram, passes summary in prompt | **Sub-agent** saves discoveries/decisions via `mem_save` |
+| SDD (phase with dependencies) | **Sub-agent** reads artifacts directly from backend | **Sub-agent** saves its artifact |
+| SDD (phase without dependencies, e.g. explore) | Nobody | **Sub-agent** saves its artifact |
+
+### Why this split
+
+- **Orchestrator reads for non-SDD**: It already has the engram protocol loaded. It knows what context is relevant. Sub-agents doing their own searches waste tokens on potentially irrelevant results.
+- **Sub-agents read for SDD**: SDD artifacts are large (specs, designs). The orchestrator should NOT inline them — it passes artifact references (topic keys or file paths) and the sub-agent retrieves the full content.
+- **Sub-agents always write**: They have the complete detail. By the time results flow back to the orchestrator, nuance is lost. Persist at the source.
+
+### Orchestrator prompt instructions for sub-agents
+
+When launching a sub-agent, the orchestrator MUST include persistence instructions in the prompt:
+
+**Non-SDD**:
+```
+PERSISTENCE (MANDATORY):
+If you make important discoveries, decisions, or fix bugs, you MUST save them
+to engram before returning:
+  mem_save(title: "{short description}", type: "{decision|bugfix|discovery|pattern}",
+           project: "{project}", content: "{What, Why, Where, Learned}")
+Do NOT return without saving what you learned. This is how the team builds
+persistent knowledge across sessions.
+```
+
+**SDD (with dependencies)**:
+```
+Artifact store mode: {engram|openspec|hybrid|none}
+Read these artifacts before starting (two-step — search returns truncated previews):
+  mem_search(query: "sdd/{change-name}/{type}", project: "{project}") → get ID
+  mem_get_observation(id: {id}) → full content (REQUIRED for SDD dependencies)
+
+PERSISTENCE (MANDATORY — do NOT skip):
+After completing your work, you MUST call:
+  mem_save(
+    title: "sdd/{change-name}/{artifact-type}",
+    topic_key: "sdd/{change-name}/{artifact-type}",
+    type: "architecture",
+    project: "{project}",
+    content: "{your full artifact markdown}"
+  )
+If you return without calling mem_save, the next phase CANNOT find your artifact
+and the pipeline BREAKS.
+```
+
+**SDD (no dependencies)**:
+```
+Artifact store mode: {engram|openspec|hybrid|none}
+
+PERSISTENCE (MANDATORY — do NOT skip):
+After completing your work, you MUST call:
+  mem_save(
+    title: "sdd/{change-name}/{artifact-type}",
+    topic_key: "sdd/{change-name}/{artifact-type}",
+    type: "architecture",
+    project: "{project}",
+    content: "{your full artifact markdown}"
+  )
+If you return without calling mem_save, the next phase CANNOT find your artifact
+and the pipeline BREAKS.
+```
+
+## Skill Registry
+
+The orchestrator pre-resolves skill paths and passes them in the launch prompt. Sub-agents do NOT search for the skill registry.
+
+### How to generate/update
+
+Run the `skill-registry` skill, or run `sdd-init` (which includes registry generation).
+
+### Sub-agent skill loading
+
+When the orchestrator launches you, it includes a `SKILL: Load \`{path}\`` instruction if a skill is relevant. Load that file and follow it. If no skill path was provided, proceed without loading additional skills — this is not an error.
+
 ## Detail Level
 
 The orchestrator may also pass `detail_level`: `concise | standard | deep`.

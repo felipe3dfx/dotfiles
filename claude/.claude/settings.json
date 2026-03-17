@@ -63,7 +63,8 @@
       "Bash(source:*)",
       "Bash(pytest:*)",
       "WebFetch",
-      "WebSearch"
+      "WebSearch",
+      "mcp__plugin_engram_engram__mem_*"
     ],
     "deny": [
       "Read(.env)",
@@ -91,11 +92,17 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
     "linear@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
     "engram@engram": true
   },
-  "outputStyle": "felipe3dfx",
-  "model": "opus"
+  "extraKnownMarketplaces": {
+    "engram": {
+      "source": {
+        "source": "github",
+        "repo": "Gentleman-Programming/engram"
+      }
+    }
+  },
+  "outputStyle": "felipe3dfx"
 }
