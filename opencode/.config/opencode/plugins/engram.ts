@@ -84,6 +84,7 @@ When the user asks to recall something — any variation of "remember", "recall"
 Also search memory PROACTIVELY when:
 - Starting work on something that might have been done before
 - The user mentions a topic you have no context on — check if past sessions covered it
+- The user's FIRST message references the project, a feature, or a problem — call \`mem_search\` with keywords from their message to check for prior work before responding
 
 ### SESSION CLOSE PROTOCOL (mandatory)
 
@@ -153,6 +154,28 @@ async function isEngramRunning(): Promise<boolean> {
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function extractProjectName(directory: string): string {
+  // Try git remote origin URL
+  try {
+    const result = Bun.spawnSync(["git", "-C", directory, "remote", "get-url", "origin"])
+    if (result.exitCode === 0) {
+      const url = result.stdout?.toString().trim()
+      if (url) {
+        const name = url.replace(/\.git$/, "").split(/[/:]/).pop()
+        if (name) return name
+      }
+    }
+  } catch {}
+
+  // Fallback: git root directory name (works in worktrees)
+  try {
+    const result = Bun.spawnSync(["git", "-C", directory, "rev-parse", "--show-toplevel"])
+    if (result.exitCode === 0) {
+      const root = result.stdout?.toString().trim()
+      if (root) return root.split("/").pop() ?? "unknown"
+    }
+  } catch {}
+
+  // Final fallback: cwd basename
   return directory.split("/").pop() ?? "unknown"
 }
 
@@ -174,6 +197,7 @@ function stripPrivateTags(str: string): string {
 // ─── Plugin Export ───────────────────────────────────────────────────────────
 
 export const Engram: Plugin = async (ctx) => {
+  const oldProject = ctx.directory.split("/").pop() ?? "unknown"
   const project = extractProjectName(ctx.directory)
 
   // Track tool counts per session (in-memory only, not critical)
@@ -212,6 +236,15 @@ export const Engram: Plugin = async (ctx) => {
     } catch {
       // Binary not found or can't start — plugin will silently no-op
     }
+  }
+
+  // Migrate project name if it changed (one-time, idempotent)
+  // Must run AFTER server startup to ensure the endpoint is available
+  if (oldProject !== project) {
+    await engramFetch("/projects/migrate", {
+      method: "POST",
+      body: { old_project: oldProject, new_project: project },
+    })
   }
 
   // Auto-import: if .engram/manifest.json exists in the project repo,
@@ -320,9 +353,19 @@ export const Engram: Plugin = async (ctx) => {
     // ─── System Prompt: Always-on memory instructions ──────────
     // Injects MEMORY_INSTRUCTIONS into the system prompt of every message.
     // This ensures the agent ALWAYS knows about Engram, even after compaction.
+    //
+    // We append to the last existing system entry instead of pushing a new one.
+    // Some models (Qwen3.5, Mistral/Ministral via llama.cpp) reject multiple
+    // system messages — their Jinja chat templates only allow a single system
+    // block at the beginning. By concatenating, we avoid adding extra system
+    // messages that would break these models. See: GitHub issue #23.
 
     "experimental.chat.system.transform": async (_input, output) => {
-      output.system.push(MEMORY_INSTRUCTIONS)
+      if (output.system.length > 0) {
+        output.system[output.system.length - 1] += "\n\n" + MEMORY_INSTRUCTIONS
+      } else {
+        output.system.push(MEMORY_INSTRUCTIONS)
+      }
     },
 
     // ─── Compaction Hook: Persist memory + inject context ──────────

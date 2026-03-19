@@ -3,6 +3,22 @@
     "commit": "",
     "pr": ""
   },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true,
+    "engram@engram": true
+  },
+  "extraKnownMarketplaces": {
+    "engram": {
+      "source": {
+        "source": "github",
+        "repo": "Gentleman-Programming/engram"
+      }
+    }
+  },
+  "outputStyle": "felipe3dfx",
   "permissions": {
     "allow": [
       "Read",
@@ -64,7 +80,25 @@
       "Bash(pytest:*)",
       "WebFetch",
       "WebSearch",
-      "mcp__plugin_engram_engram__mem_*"
+      "mcp__plugin_engram_engram__mem_*",
+      "mcp__plugin_engram_engram__mem_capture_passive",
+      "mcp__plugin_engram_engram__mem_context",
+      "mcp__plugin_engram_engram__mem_get_observation",
+      "mcp__plugin_engram_engram__mem_save",
+      "mcp__plugin_engram_engram__mem_save_prompt",
+      "mcp__plugin_engram_engram__mem_search",
+      "mcp__plugin_engram_engram__mem_session_end",
+      "mcp__plugin_engram_engram__mem_session_start",
+      "mcp__plugin_engram_engram__mem_session_summary",
+      "mcp__plugin_engram_engram__mem_suggest_topic_key",
+      "mcp__plugin_engram_engram__mem_update"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git push --force:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset --hard:*)"
     ],
     "deny": [
       "Read(.env)",
@@ -76,33 +110,10 @@
       "Read(**/.env.*)",
       "Read(**/secrets/**)",
       "Read(**/credentials.json)"
-    ],
-    "ask": [
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git push --force:*)",
-      "Bash(git rebase:*)",
-      "Bash(git reset --hard:*)"
     ]
   },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "linear@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "engram@engram": true
-  },
-  "extraKnownMarketplaces": {
-    "engram": {
-      "source": {
-        "source": "github",
-        "repo": "Gentleman-Programming/engram"
-      }
-    }
-  },
-  "outputStyle": "felipe3dfx"
+  }
 }
