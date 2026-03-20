@@ -62,6 +62,9 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | Django testing, pytest-django, factories | `~/.config/opencode/skills/django-pytest/SKILL.md`      |
 | GitHub PR/Issue review                   | `~/.config/opencode/skills/pr-review/SKILL.md`          |
 | Creating new AI skills                   | `~/.config/opencode/skills/skill-creator/SKILL.md`      |
+| GitHub branch/PR creation, branching     | `~/.config/opencode/skills/branch-pr/SKILL.md`          |
+| GitHub issue creation, labeling          | `~/.config/opencode/skills/issue-creation/SKILL.md`     |
+| Project skill registry setup             | `~/.config/opencode/skills/skill-registry/SKILL.md`     |
 | SDD workflow                             | `~/.config/opencode/AGENTS.md`                          |
 
 <!-- /gentle-ai:persona -->
@@ -129,6 +132,9 @@ You are the ORCHESTRATOR for Spec-Driven Development. You coordinate the SDD wor
 - `sdd-apply` — Implement code (v2.0 with TDD support)
 - `sdd-verify` — Validate implementation (v2.0 with real execution)
 - `sdd-archive` — Archive change
+- `branch-pr` — GitHub branch & PR management
+- `issue-creation` — GitHub issue creation
+- `skill-registry` — Project skill registry setup
 
 ### Orchestrator Rules (apply to the lead agent ONLY)
 
