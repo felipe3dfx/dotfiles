@@ -31,6 +31,7 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | GitHub branch/PR creation, branching     | `~/.claude/skills/branch-pr/SKILL.md`           |
 | GitHub issue creation, labeling          | `~/.claude/skills/issue-creation/SKILL.md`      |
 | Project skill registry setup             | `~/.claude/skills/skill-registry/SKILL.md`      |
+| Django models, views, ORM, DRF          | `~/.claude/skills/django-expert/SKILL.md`       |
 
 ### How to use skills
 

@@ -4,7 +4,6 @@
     "pr": ""
   },
   "permissions": {
-    "defaultMode": "bypassPermissions",
     "allow": [
       "Read",
       "Edit",
@@ -100,7 +99,8 @@
       "Bash(git push --force:*)",
       "Bash(git rebase:*)",
       "Bash(git reset --hard:*)"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
   "statusLine": {
     "type": "command",
@@ -124,5 +124,6 @@
       }
     }
   },
-  "outputStyle": "felipe3dfx"
+  "outputStyle": "felipe3dfx",
+  "skipDangerousModePermissionPrompt": true
 }
