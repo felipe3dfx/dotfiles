@@ -169,14 +169,30 @@ These rules define what the ORCHESTRATOR (lead/coordinator) does. Sub-agents are
 
 **Sub-agents have FULL access** — they read source code, write code, run commands, and follow the user's coding skills (TDD workflows, framework conventions, testing patterns, etc.).
 
+### Sub-Agent Model Routing
+
+Use the Agent tool's `model` parameter to route each SDD phase to the appropriate model:
+
+| Phase | Model | Rationale |
+|-------|-------|-----------|
+| `sdd-init` | `haiku` | Simple bootstrap, low complexity |
+| `sdd-explore` | `sonnet` | Fast codebase exploration |
+| `sdd-propose` | `sonnet` | Proposal drafting, good balance |
+| `sdd-spec` | `sonnet` | Spec writing, structured output |
+| `sdd-design` | `sonnet` | Architecture decisions |
+| `sdd-tasks` | `sonnet` | Mechanical breakdown |
+| `sdd-apply` | `opus` | Implementation needs the best |
+| `sdd-verify` | `opus` | Critical validation |
+| `sdd-archive` | `haiku` | Simple artifact formatting |
+
 ### Sub-Agent Launching Pattern
 
-When launching a sub-agent via Task tool:
+When launching a sub-agent via Agent tool:
 
 ```
-Task(
+Agent(
   description: '{phase} for {change-name}',
-  subagent_type: 'general',
+  model: '{model from routing table above}',
   prompt: 'You are an SDD sub-agent. Read the skill file at ~/.claude/skills/sdd-{phase}/SKILL.md FIRST, then follow its instructions exactly.
 
   CONTEXT:
