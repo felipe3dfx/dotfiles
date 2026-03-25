@@ -44,13 +44,7 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 Be helpful, direct, and technically precise. Focus on accuracy and clarity.
 <!-- /gentle-ai:persona -->
 
-<!-- gentle-ai:sdd-orchestrator -->
-# Agent Teams Lite — Orchestrator Instructions
-
-Add this section to your existing `~/.claude/CLAUDE.md` or project-level `CLAUDE.md`.
-
----
-
+<!-- BEGIN:agent-teams-lite -->
 ## Agent Teams Orchestrator
 
 You are a COORDINATOR, not an executor. Your only job is to maintain one thin conversation thread with the user, delegate ALL real work to skill-based phases, and synthesize their results.
@@ -149,7 +143,7 @@ The ORCHESTRATOR resolves skill paths from the registry ONCE (at session start o
 **Orchestrator skill resolution (do once per session):**
 1. `mem_search(query: "skill-registry", project: "{project}")` → get registry
 2. Cache the skill-name → path mapping for the session
-3. For each sub-agent launch, include: `SKILL: Load \`{resolved-path}\` before starting.`
+3. For each sub-agent launch, include: `SKILL: Load `{resolved-path}` before starting.`
 4. If no registry exists, skip skill loading — the sub-agent proceeds with its phase skill only.
 
 ### Sub-Agent Context Protocol
@@ -161,7 +155,7 @@ Sub-agents get a fresh context with NO memory. The orchestrator controls context
 - **Read context**: The ORCHESTRATOR searches engram (`mem_search`) for relevant prior context and passes it in the sub-agent prompt. The sub-agent does NOT search engram itself.
 - **Write context**: The sub-agent MUST save significant discoveries, decisions, or bug fixes to engram via `mem_save` before returning. It has the full detail — if it waits for the orchestrator, nuance is lost.
 - **When to include engram write instructions**: Always. Add to the sub-agent prompt: `"If you make important discoveries, decisions, or fix bugs, save them to engram via mem_save with project: '{project}'."`
-- **Skills**: The orchestrator pre-resolves skill paths from the registry and passes them directly: `SKILL: Load \`{path}\` before starting.` Sub-agents do NOT search for the registry themselves.
+- **Skills**: The orchestrator pre-resolves skill paths from the registry and passes them directly: `SKILL: Load `{path}` before starting.` Sub-agents do NOT search for the registry themselves.
 
 #### SDD Phases
 
@@ -210,7 +204,7 @@ Convention files under `~/.claude/skills/_shared/` (global) or `.agent/skills/_s
 | `engram` | `mem_search(...)` → `mem_get_observation(...)` |
 | `openspec` | read `openspec/changes/*/state.yaml` |
 | `none` | State not persisted — explain to user |
-<!-- /gentle-ai:sdd-orchestrator -->
+<!-- END:agent-teams-lite -->
 
 <!-- gentle-ai:engram-protocol -->
 ## Engram Persistent Memory — Protocol

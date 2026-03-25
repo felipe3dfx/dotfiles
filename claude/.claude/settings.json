@@ -84,14 +84,8 @@
       "Bash(sudo rm -rf ~)",
       "Read(.env)",
       "Read(.env.*)",
-      "Read(**/.env)",
-      "Read(**/.env.*)",
-      "Read(**/secrets/**)",
-      "Read(**/credentials.json)",
       "Edit(.env)",
-      "Edit(.env.*)",
-      "Edit(**/.env)",
-      "Edit(**/.env.*)"
+      "Edit(.env.*)"
     ],
     "ask": [
       "Bash(git commit:*)",
@@ -107,14 +101,14 @@
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "linear@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "engram@engram": true,
-    "playwright@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
-    "figma@claude-plugins-official": true
+    "code-simplifier@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "engram@engram": true,
+    "figma@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "engram": {
