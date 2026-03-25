@@ -47,3 +47,9 @@ stow -R claude
 - Hyprland monitors config is the only hypr file managed by stow; rest lives directly in `~/.config/hypr/`
 - Git commits are GPG-signed with SSH keys (`gpg.format = ssh`)
 - Skills are maintained in `skills/` (top-level) and copied to stow packages by `sync-skills.sh` — never edit skills inside `claude/` or `opencode/` directly
+
+## Sync & Maintenance
+
+- Upstream repos: `~/Documents/repos/gentle-ai` and `~/Documents/repos/agent-teams-lite`
+- After running upstream installers, verify `claude/.claude/mcp/*.json` files — installers can drop required fields (e.g., `"command"`)
+- `stow --simulate` shows conflicts on `~/.claude/CLAUDE.md` and `~/.claude/settings.json` — expected (real files, not symlinks)
