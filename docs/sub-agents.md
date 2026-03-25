@@ -91,3 +91,33 @@ Sub-agents start with a **fresh context** — they don't know what user skills e
 - Project conventions found: `agents.md`, `CLAUDE.md`, `.cursorrules`, etc.
 
 **When to update:** Run `/skill-registry` after installing or removing skills.
+
+---
+
+## Model-Aware Routing via Agent Mentions
+
+By default, all SDD commands route through `sdd-orchestrator` (via `agent: sdd-orchestrator` in command YAML files). When the orchestrator delegates via the `delegate` tool, it passes the `agent` parameter which tells OpenCode to load that agent's config — including its `model` field.
+
+However, some OpenCode providers (e.g., gentle-ai) may not fully respect the `agent` parameter for model selection in `session.prompt()`. In these cases, the sub-agent session inherits the parent's model instead of using the target agent's configured model.
+
+**Alternative: `@agent-name` text mentions.** The orchestrator can use `@agent-name` mentions in its output, which triggers OpenCode's native agent routing. This consistently applies the target agent's full config including `model`.
+
+To use this pattern, modify the orchestrator's `AGENTS.md` Commands section to use `@subagent` mentions instead of skill-based invocations.
+
+**Standard approach:**
+
+```
+orchestrator calls delegate("Research OAuth2 PKCE flow", "sdd-explore")
+```
+
+**Mention-based approach:**
+
+```
+orchestrator outputs @sdd-explore Research OAuth2 PKCE flow
+```
+
+The mention-based approach triggers OpenCode's built-in agent routing, which loads the full agent config (model, system prompt, tools) before creating the session.
+
+> **Prerequisite:** Each agent must have a `model` field in `opencode.json` for model routing to take effect.
+
+Reported by community member Bismarck Cerda (observation #1290).

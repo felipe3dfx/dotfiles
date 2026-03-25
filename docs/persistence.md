@@ -8,6 +8,7 @@ The SDD framework supports multiple artifact storage backends. For quick start, 
 |------|-------------|
 | `engram` | Default. Persistent memory across sessions. |
 | `openspec` | File-based artifacts in `openspec/` directory. |
+| `hybrid` | Both engram + openspec simultaneously. |
 | `none` | No persistence. Results inline only. |
 
 ## Configuration
@@ -30,12 +31,19 @@ artifact_store:
   mode: openspec
 ```
 
+```yaml
+# Both backends: cross-session recovery + local files (uses more tokens)
+artifact_store:
+  mode: hybrid
+```
+
 Default policy is conservative:
 
 - If Engram is available, persist to Engram (recommended)
 - If user explicitly asks for file artifacts, use `openspec`
+- If user wants both cross-session recovery AND local files, use `hybrid`
 - Otherwise use `none` (no writes)
-- `openspec` is NEVER chosen automatically — only when the user explicitly asks
+- `openspec` and `hybrid` are NEVER chosen automatically — only when the user explicitly asks
 
 ## OpenSpec File Structure
 
