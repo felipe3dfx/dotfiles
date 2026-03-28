@@ -10,3 +10,6 @@ claude/.claude/*
 # Skills are copied by sync-skills.sh — only skills/ (top-level) is versioned
 claude/.claude/skills/
 opencode/.config/opencode/skills/
+
+# Agent Teams Lite runtime
+.atl/
